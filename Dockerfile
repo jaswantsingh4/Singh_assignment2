@@ -13,5 +13,5 @@ RUN npm install
 
 
 
-EXPOSE 3000
+EXPOSE 5500
 CMD node src/index.js

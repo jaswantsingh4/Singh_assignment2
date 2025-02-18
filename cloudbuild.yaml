@@ -6,6 +6,12 @@ steps:
   # Step 2: Push Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/scenic-impact-450921-a1/jaswant-100995271/image:${COMMIT_SHA}']
+    
+     # Step 3: Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: ['run', 'deploy', 'jaswant-100995271-to-do-list-app', '--image', 'us-central1-docker.pkg.dev/spheric-basis-438520-q2/maheep-100909435/image:${COMMIT_SHA}', '--region', 'us-central1', '--platform', 'managed', '--allow-unauthenticated']
+
 
   
 options:
